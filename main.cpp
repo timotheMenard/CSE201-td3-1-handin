@@ -20,7 +20,6 @@
  * GRADING to 0.
  */
 
-#define GRADING 1
 
 #include <iostream>
 #include "grading/grading.hpp"
