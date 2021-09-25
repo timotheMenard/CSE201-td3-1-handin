@@ -115,44 +115,36 @@ void merge_telemetry(double **telemetries,
                      double* &global_telemetry,
                      int &global_telemetry_current_size,
                      int &global_telemetry_max_size) {
+
     for (int i=0; i<tot_telemetries;i++) {
         for (int s=0; s<telemetries_sizes[i]; s++) {
             global_telemetry = append_to_array(telemetries[i][s], global_telemetry, global_telemetry_current_size, global_telemetry_max_size);
         }
     }
 
-    /*for (int i = 0; i < global_telemetry_current_size-i; i++){
-        for (int j = 0; j < global_telemetry_current_size-i-1; j++){
-            if (global_telemetry[j*3] > global_telemetry[j*3+3]){
-                double temp1 = global_telemetry[j*3];
-                double temp2 = global_telemetry[j*3+1];
-                double temp3 = global_telemetry[j*3+2];
+    for (int i=0; i<global_telemetry_current_size; i+=3){
+        for (int j=i+3; j<global_telemetry_current_size; j+=3){
+            if (global_telemetry[j] < global_telemetry[i]){
+                double temp1 = global_telemetry[j];
+                double temp2 = global_telemetry[j+1];
+                double temp3 = global_telemetry[j+2];
+                global_telemetry[j] = global_telemetry[i];
+                global_telemetry[j+1] = global_telemetry[i+1];
+                global_telemetry[j+2] = global_telemetry[i+2];
+                global_telemetry[i] = temp1;
+                global_telemetry[i+1] = temp2;
+                global_telemetry[i+2] = temp3;
 
-                global_telemetry[j*3] = global_telemetry[j*3+3];
-                global_telemetry[j*3+1] = global_telemetry[j*3+4];
-                global_telemetry[j*3+2] = global_telemetry[j*3+5];
 
-                global_telemetry[j*3+3] = temp1;
-                global_telemetry[j*3+4] = temp2;
-                global_telemetry[j*3+5] = temp3;
             }
         }
-    }*/
+    }
 
-    /*for (int i = 0; i < num_targets-i; i++){
-        for (int j = 0; j < num_targets-i-1; j++){
-            if (targets[j*2] > targets[j*2+2]){
-                double temp1 = targets[j*2];
-                double temp2 = targets[j*2+1];
 
-                targets[j*2] = targets[j*2+2];
-                targets[j*2+1] = targets[j*2+3];
 
-                targets[j*2+2] = temp1;
-                targets[j*2+3] = temp2;
-            }
-        }
-    }*/
+
+
+
 
 
 }
